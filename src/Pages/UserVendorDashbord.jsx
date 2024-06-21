@@ -32,7 +32,6 @@ function UserVendorCards() {
                                 }
                             })
                             .map((vendor, idx) => {
-                                console.log(vendor)
                                 return <VendorCard key={idx} vendorData={vendor} idx={idx} />
                             })
                         )

@@ -18,13 +18,20 @@ function UserMyFavouriteVendors() {
             <div className="container m-30">
                 <div className="row mt-10">
                     {
-                        searchVendorName || (searchState != "6667fd794218d8eb5046b7b6")  ?
+                        searchVendorName || searchState ?
                         (
                             userFavourites
                             .filter((vendor, idx) => vendor.vendorId.vendorName.toLowerCase().substr(0,searchVendorName.length) === searchVendorName.toLowerCase()) 
-                            .filter((vendor, idx) => vendor.vendorId.stateId._id == searchState)
+                            .filter((vendor, idx) => {
+                                if (searchState == "") {
+                                    return vendor
+                                } else {
+                                    return vendor.vendorId.stateId._id == searchState
+                                }
+                            })                                
                             .map((vendor, idx) => {
-                                return <VendorCard key={idx} vendorData={vendor} idx={idx} />
+                                console.log(vendor)
+                                return <VendorCard key={idx} vendorData={vendor.vendorId} idx={idx} />
                             })
                         )
                         :
@@ -42,8 +49,9 @@ function UserMyFavouriteVendors() {
 
 // User Favourite Vendor Cards Creation
 function VendorCard({vendorData}) {
+    console.log(vendorData)
     const navigate = useNavigate();
-    const {setVendorId} = useAppContext();
+    const {setVendorId, userAllVendorPackageList} = useAppContext();
 
     return (
         <div className="col-sm-6 mt-3 mb-3 mb-sm-0">
@@ -67,6 +75,15 @@ function VendorCard({vendorData}) {
                         <span class="material-symbols-outlined">flag</span>
                         {vendorData.stateId.stateName}
                     </p>
+                    <p  className="card-text d-flex align-items-center gap-2">
+                        {
+                            userAllVendorPackageList
+                            .filter((data) => data.vendorId._id == vendorData._id)
+                            .map((data, idx) => {
+                                return <VendorPackageCard key={idx} data={data} idx={idx}/>
+                            })
+                        }
+                    </p>
 
                     <button 
                         className="btn btn-primary"
@@ -84,6 +101,16 @@ function VendorCard({vendorData}) {
             </div>
         </div>
     )
-}
+};
 
+
+// To Show Base Budget quoted by vendor to user
+function VendorPackageCard({data, idx}) {
+    return (
+        <>
+            <span className="material-symbols-outlined fw-semibold">currency_rupee_circle</span>
+            {data.serviceAmount}/day
+        </>
+    )
+};
 export { UserMyFavouriteVendors };

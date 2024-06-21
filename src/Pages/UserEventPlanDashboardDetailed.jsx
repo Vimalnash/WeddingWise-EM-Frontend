@@ -199,8 +199,10 @@ function MainEventsCard({val, idx}) {
                         <button onClick={(e) => deleteMainPlan(e, val._id)} className="btn btn-del">Delete</button>
                     )
                 }
-                <button onClick={(e) => planVendor(e, val, val._id, idx)} className="btn">PlanVendor</button>
-                <button onClick={(e) => planEventPreference(e, val, val._id, idx)} className="btn">PlanEventPreference</button>
+                <div className="card-bottom">
+                    <button onClick={(e) => planVendor(e, val, val._id, idx)} className="btn">PlanVendor</button>
+                    <button onClick={(e) => planEventPreference(e, val, val._id, idx)} className="btn">PlanEventPreference</button>
+                </div>
             </div>
             <hr />
             <h4 className="text-center fw-semibold border-bottom-subtle border-success">Your Event Preferences</h4>
@@ -429,8 +431,12 @@ function EventsVendorCard({val, idx}) {
             <div className="card-bottom">
                 {val.registered ? (
                     <>
-                        <button onClick={(e) => raisePayment(e, val, val._id, idx)} className="btn">RaisePayment</button>
-                        <button onClick={(e) => viewPayments(e, val, val._id, idx)} className="btn">ViewPayments</button>
+                        <button disabled onClick={(e) => editData(e, val, val._id, idx)} className="btn btn-edit">Edit</button>
+                        <button disabled onClick={(e) => deleteData(e, val._id)} className="btn btn-del">Delete</button>
+                        <div className="card-bottom">
+                            <button onClick={(e) => raisePayment(e, val, val._id, idx)} className="btn">RaisePayment</button>
+                            <button onClick={(e) => viewPayments(e, val, val._id, idx)} className="btn">ViewPayments</button>
+                        </div>
                     </>
                 )
                 : 
@@ -438,6 +444,10 @@ function EventsVendorCard({val, idx}) {
                     <>
                         <button onClick={(e) => editData(e, val, val._id, idx)} className="btn btn-edit">Edit</button>
                         <button onClick={(e) => deleteData(e, val._id)} className="btn btn-del">Delete</button>
+                        <div className="card-bottom">
+                            <button disabled onClick={(e) => raisePayment(e, val, val._id, idx)} className="btn">RaisePayment</button>
+                            <button disabled onClick={(e) => viewPayments(e, val, val._id, idx)} className="btn">ViewPayments</button>
+                        </div>
                     </>
                 )
                 }

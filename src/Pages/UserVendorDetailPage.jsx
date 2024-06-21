@@ -4,6 +4,7 @@ import { PageHeader } from "../Components/PageHeader";
 import { useAppContext } from "../Context/AppContext"
 import { baseurl, userurl } from "../Handlers/BackendUrls";
 import { getToken } from "../Authentication/auth";
+import { useEffect, useState } from "react";
 
 // Vendor Data Detailed Page View
 function UserVendorDetailPage() {
@@ -42,6 +43,7 @@ function UserVendorDetailPage() {
 // Vendor Details and Package Details, Images given by Vendor and Adding as user Fav.
 function VendorCard({vendorData}) {
     const navigate = useNavigate();
+    const [fav, setFav] = useState("");
     const {
         userFavourites, 
         setUserFavourites, 
@@ -50,12 +52,13 @@ function VendorCard({vendorData}) {
         vendorPayTermsList
     } = useAppContext();
     
-    let fav = true;
-    userFavourites.map((data) => {
-        if (data.vendorId._id == vendorData._id && data.userId.userName == loggedInUser) {
-            fav = false;
-        }
-    });
+    useEffect(() => {
+        userFavourites.map((data) => {
+            if (data.vendorId._id == vendorData._id && data.userId.userName == loggedInUser) {
+                setFav(data._id);
+            }
+        });
+    }, [])
 
     // Handling the AddtoFavourites button
     function handleBtnFavourite() {
@@ -79,8 +82,9 @@ function VendorCard({vendorData}) {
             } else {
                 const newFavArray = [...userFavourites, data.data];
                 setUserFavourites(newFavArray);
-                navigate("/");
-                location.reload();
+                setFav("true");
+                // navigate("/");
+                // location.reload();
             }
         })
     };
@@ -89,8 +93,7 @@ function VendorCard({vendorData}) {
     // Remove Favourites button functionality
     function removeFavourite(e, id) {
         e.preventDefault();
-        console.log("Remove", id);
-
+        // console.log("Remove", id);
         const confirmRemove = confirm("Confirm Remove?")
         confirmRemove ?
         (
@@ -108,8 +111,9 @@ function VendorCard({vendorData}) {
                 const newList = userFavourites.filter((data) => data._id != id)
                 setUserFavourites(newList);
             }
-            navigate("/");
-            location.reload();
+            setFav("");
+            // navigate("/");
+            // location.reload();
         })
         )
         :
@@ -169,24 +173,6 @@ function VendorCard({vendorData}) {
                                     </div>
                                     {
                                         fav ?
-                                        (      
-                                            <>
-                                            <button 
-                                                className="btn btn-primary"
-                                                onClick={handleBtnFavourite}
-                                            >
-                                                Add to Favourites
-                                            </button>
-                                            <button 
-                                                disabled
-                                                className="btn btn-del"
-                                                onClick={(e) => {removeFavourite(e, vendorData._id)}}
-                                            >
-                                                Remove From Favouries
-                                            </button>
-                                            </>                              
-                                        )
-                                        :
                                         (
                                             <>
                                             <button 
@@ -198,11 +184,29 @@ function VendorCard({vendorData}) {
                                             </button>
                                             <button 
                                                 className="btn btn-del"
-                                                onClick={(e) => {removeFavourite(e, vendorData._id)}}
+                                                onClick={(e) => {removeFavourite(e, fav)}}
                                             >
                                                 Remove From Favouries
                                             </button>
                                             </>     
+                                        )
+                                        :
+                                        (      
+                                            <>
+                                            <button 
+                                                className="btn btn-primary"
+                                                onClick={handleBtnFavourite}
+                                            >
+                                                Add to Favourites
+                                            </button>
+                                            <button 
+                                                disabled
+                                                className="btn btn-del"
+                                                onClick={(e) => {removeFavourite(e, fav)}}
+                                            >
+                                                Remove From Favouries
+                                            </button>
+                                            </>                              
                                         )
                                     }
                                 </div>
