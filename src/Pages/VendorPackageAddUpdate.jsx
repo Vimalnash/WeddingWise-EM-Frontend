@@ -95,6 +95,7 @@ export function VendorPackageAddUpdate() {
         })
         .then((res)=> res.json())
         .then((updatedData) => {
+            // console.log(updatedData);
             if (updatedData.error) {
                 console.log(updatedData.error);
                 setFailureMessage(updatedData.error);
@@ -143,7 +144,7 @@ export function VendorPackageAddUpdate() {
         })
         .then((res) => res.json())
         .then((addedData) => {
-            console.log(addedData);
+            // console.log(addedData);
             if(addedData.error) {
                 console.log(addedData.error);
                 setFailureMessage(addedData.error);

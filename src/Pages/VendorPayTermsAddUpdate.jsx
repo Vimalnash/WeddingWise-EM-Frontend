@@ -61,7 +61,7 @@ export function VendorPayTermsAddUpdate() {
                 setFailureMessage(updatedData.error);
                 setSuccessMessage("");
             } else {
-                console.log(updatedData)
+                // console.log(updatedData)
                 setShow(true);
                 setFailureMessage("");
                 setSuccessMessage(updatedData.message);
@@ -94,7 +94,7 @@ export function VendorPayTermsAddUpdate() {
         })
         .then((res) => res.json())
         .then((addedData) => {
-            console.log(addedData);
+            // console.log(addedData);
             if(addedData.error) {
                 console.log(addedData.error);
                 setFailureMessage(addedData.error);

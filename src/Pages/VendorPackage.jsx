@@ -17,7 +17,7 @@ export function VendorPackage() {
             <hr />
             <div>
                 {
-                    vendorPackageList.length<0 ?
+                    vendorPackageList.length <= 0 ?
                     (
                         <>
                             <button 
