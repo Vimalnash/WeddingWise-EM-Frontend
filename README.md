@@ -1,21 +1,20 @@
 # WeddingWise-EM-Frontend
 Used Reactjs, Bootstrap and Custom CSS
 
-Authentication Layers Applied
-    -> Admin Login
-    -> User Login
-    -> Vendor Login
-  ->Check credentials.txt file to login
+    Authentication Layers Applied
+        -> Admin Login
+        -> User Login
+        -> Vendor Login
+    ->Check credentials.txt file to login
 
-Admin WorkAround
-    -> User Menu
-        -> Login Using admin Credentials.
-    -> Admin Menu
-        -> Event Category   -> Like Wedding, Reception, PreWedding, etc..
-        -> Event Services   -> Photography, Catering, Travel, OverallEventManageLtds, etc...
+    Admin WorkAround
+        -> User Menu
+            -> Login Using admin Credentials.
+        -> Admin Menu
+            -> Event Category   -> Like Wedding, Reception, PreWedding, etc..
+            -> Event Services   -> Photography, Catering, Travel, OverallEventManageLtds, etc...
 
-Vendor WorkAround (To Update Their Basic Package details)
-
+    Vendor WorkAround (To Update Their Basic Package details)
     -> Vendors-BusinessSignup Menu
         -> Signup Using New Credentials.
         -> Login using already Signedup credentials.
@@ -30,7 +29,8 @@ Vendor WorkAround (To Update Their Basic Package details)
             -> Vendor Shall Add 1 Payment Terms to show users.
             -> Edit any no of times.
 
-User WorkAround (To Plan their events)
+    User WorkAround (To Plan their events)
+
     -> User Menu
         -> Signup Using New Credentials.
         -> Login using already Signedup credentials.
@@ -73,4 +73,5 @@ User WorkAround (To Plan their events)
             -> Event Summary View
                 -> Planned Basis.
                 -> Confirmed/Registerd Basis.
+            
             
