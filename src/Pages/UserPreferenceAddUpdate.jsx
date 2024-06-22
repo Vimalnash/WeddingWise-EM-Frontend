@@ -101,8 +101,8 @@ export function UserPreferenceAddUpdate() {
                 setSuccessMessage(addedData.message);
                 setUserPreferenceList([...userPreferenceList, addedData.data]);  
                 setTimeout(() => {
-                    navigate("/");
-                }, 1000);
+                    navigate("/user/eventplandashboarddetailed");
+                }, 2000);
             };
         })
     };

@@ -289,7 +289,7 @@ export function VendorSignupPage() {
             </div>
             <div className="text-center m-3">
                 <span>Already Registered?  </span>
-                <button className="btn btn-outline-primary"onClick={() => navigate("/user/login")}>Login</button>
+                <button className="btn btn-outline-primary"onClick={() => navigate("/vendor/login")}>Login</button>
                 <div id="Help" className="form-text">We'll never share your personalDetails with anyone else.</div>
             </div>
             {

@@ -95,7 +95,7 @@ export function UserEventPlanVendorReg() {
                 setUserEventPlanRegList([...userEventPlanRegList, data.data]);
                 setTimeout(() => {
                     navigate("/user/eventplandashboarddetailed");
-                },1000);
+                },2000);
             }
         })
     };
