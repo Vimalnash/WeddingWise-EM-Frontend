@@ -44,7 +44,12 @@ function EventsCard({val}) {
                 <div><span className="cardcaption">StartTime : </span> <span className="cardvalue">{val.startTime}</span></div>
                 <div><span className="cardcaption">EndTime : </span> <span className="cardvalue">{val.endTime}</span></div>
                 <div><span className="cardcaption">Exp.MemberCount : </span> <span className="cardvalue">{val.expectedMemberCount}</span></div>
-                <div><span className="cardcaption">BudgetAmount : </span> <span className="cardvalue">{val.budgetAmount}</span></div>
+                <div>
+                    <span className="cardcaption">BudgetAmount : </span> 
+                    <span className="cardvalue">
+                        {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(val.budgetAmount)}
+                    </span>
+                </div>
             </div>
         </div>
     )

@@ -201,7 +201,12 @@ function MainEventsCard({val, idx}) {
                 <div><span className="cardcaption">StartTime : </span> <span className="cardvalue">{val.startTime}</span></div>
                 <div><span className="cardcaption">EndTime : </span> <span className="cardvalue">{val.endTime}</span></div>
                 <div><span className="cardcaption">Exp.MemberCount : </span> <span className="cardvalue">{val.expectedMemberCount}</span></div>
-                <div><span className="cardcaption">BudgetAmount : </span> <span className="cardvalue">{val.budgetAmount}</span></div>
+                <div>
+                    <span className="cardcaption">BudgetAmount : </span> 
+                    <span className="cardvalue">
+                        {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(val.budgetAmount)}
+                    </span>
+                </div>
             </div>
             <div className="card-bottom">
                 <button onClick={(e) => editMainPlan(e, val, val._id, idx)} className="btn btn-edit">Edit</button>
@@ -241,20 +246,53 @@ function MainEventsCard({val, idx}) {
                 }
             </div>
             <hr />
-            <h2 className="text-center fw-semibold border-bottom border-success">Event Summary - BudgetPlanned - {val.budgetAmount}</h2>
+            <h2 className="text-center fw-semibold border-bottom border-success">
+                Event Summary - BudgetPlanned -  &nbsp;
+                {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(val.budgetAmount)}
+            </h2>
             <div className="d-flex flex-row flex-warp justify-content-center gap-2">
                 <div className="cardcustom col-md-6 p-2" >
                     <h3 className="text-center fw-semibold border-bottom border-success">Planned Basis</h3>
                     {/* <div><span className="cardcaption">Budget Planned: </span> <span className="cardvalue">{val.budgetAmount} </span></div> */}
-                    <div><span className="cardcaption"> VendorWise Planned: </span> <span className="cardvalue"> {vendorAllotedAmt} </span></div>
-                    <div><span className="cardcaption"> Balance: </span> <span className="cardvalue"> {val.budgetAmount-vendorAllotedAmt} </span></div>
+                    <div>
+                        <span className="cardcaption"> VendorWise Planned: </span> 
+                        <span className="cardvalue"> 
+                            {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(vendorAllotedAmt)}
+                        </span>
+                    </div>
+                    <div>
+                        <span className="cardcaption"> Balance: </span> 
+                        <span className="cardvalue"> 
+                            {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(val.budgetAmount-vendorAllotedAmt)}
+                        </span>
+                    </div>
                 </div>
                 <div className="cardcustom col-md-6 p-2" >                    
                     <h3 className="text-center fw-semibold border-bottom border-success">Confirmed Basis</h3>
-                    <div><span className="cardcaption"> Confirmed/Reg:</span> <span className="cardvalue"> {vendorRegAmt} </span></div>
-                    <div><span className="cardcaption"> Balance : </span> <span className="cardvalue"> {val.budgetAmount-vendorRegAmt} </span></div>
-                    <div><span className="cardcaption"> TotalPaymentMade : </span> <span className="cardvalue"> {totalPaidAmt} </span></div>
-                    <div><span className="cardcaption"> ToPay : </span> <span className="cardvalue"> {vendorRegAmt-totalPaidAmt} </span></div>
+                    <div>
+                        <span className="cardcaption"> Confirmed/Reg:</span> 
+                        <span className="cardvalue"> 
+                            {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(vendorRegAmt)}
+                        </span>
+                    </div>
+                    <div>
+                        <span className="cardcaption"> Balance : </span> 
+                        <span className="cardvalue"> 
+                            {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(val.budgetAmount-vendorRegAmt)}
+                        </span>
+                        </div>
+                    <div>
+                        <span className="cardcaption"> TotalPaymentMade : </span> 
+                        <span className="cardvalue"> 
+                            {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(totalPaidAmt)}
+                        </span>
+                    </div>
+                    <div>
+                        <span className="cardcaption"> ToPay : </span> 
+                        <span className="cardvalue"> 
+                            {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(vendorRegAmt-totalPaidAmt)}
+                        </span>
+                    </div>
                 </div>
 
             </div>
@@ -439,7 +477,12 @@ function EventsVendorCard({val, idx}) {
                 <div><span className="cardcaption">EndTime : </span> <span className="cardvalue">{val.endTime}</span></div>
                 <div><span className="cardcaption">Vendor : </span> <span className="cardvalue">{val.vendorId.vendorName}</span></div>
                 <div><span className="cardcaption">Description : </span> <span className="cardvalue">{val.description}</span></div>
-                <div><span className="cardcaption">PayableAmount : </span> <span className="cardvalue">{val.amount}</span></div>
+                <div>
+                    <span className="cardcaption">PayableAmount : </span> 
+                    <span className="cardvalue">
+                        {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(val.amount)}
+                    </span>
+                </div>
                 <div><span className="cardcaption">isRegistered : </span> <span className="cardvalue">
                     {val.registered ? <span className="text-success">"Registered"</span> : <span className="text-danger">"Not-Registered"</span> }</span>
                 </div>

@@ -38,7 +38,8 @@ export function UserEventPaymentDashboard() {
                         className="text-center fw-semibold border-bottom border-success"
                     >
                         TotalPaid to 
-                        {paidTotalAmount.vendorName} - {paidTotalAmount.totalAmountPaid}
+                        {paidTotalAmount.vendorName} - &nbsp;
+                            {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(paidTotalAmount.totalAmountPaid)}
                     </h3>
                 </div>
             </div>
@@ -125,7 +126,12 @@ function EventsPaymentCards({val, idx}) {
                 <div><span className="cardcaption">EventService : </span> <span className="cardvalue">{val.vendorId.eventServiceId.eventServiceName}</span></div>
                 <div><span className="cardcaption">Vendor : </span> <span className="cardvalue">{val.vendorId.vendorName}</span></div>
                 <div><span className="cardcaption">PaidDate : </span> <span className="cardvalue">{val.paidDate}</span></div>
-                <div><span className="cardcaption">PaidAmount : </span> <span className="cardvalue">{val.amount}</span></div>
+                <div>
+                    <span className="cardcaption">PaidAmount : </span> 
+                    <span className="cardvalue">
+                        {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(val.amount)}
+                    </span>
+                </div>
                 <div><span className="cardcaption">Remarks : </span> <span className="cardvalue">{val.remarks}</span></div>
 
             </div>
