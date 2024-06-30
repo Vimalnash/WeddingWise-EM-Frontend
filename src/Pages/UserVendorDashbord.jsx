@@ -109,7 +109,7 @@ function VendorPackageCard({data, idx}) {
     return (
         <>
             <span className="material-symbols-outlined fw-semibold">currency_rupee_circle</span>
-            {data.serviceAmount}/day
+            {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(data.serviceAmount)}/day
         </>
     )
 };

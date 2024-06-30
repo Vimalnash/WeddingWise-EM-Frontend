@@ -275,7 +275,7 @@ function VendorPackageCard({data, idx}) {
                 <div className="card-body bg-success text-dark bg-opacity-10">
                     <p className="card-text d-flex align-items-center gap-2">
                         <span className="material-symbols-outlined">currency_rupee_circle</span>
-                        {data.serviceAmount}/day
+                        {Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', minimumFractionDigits: 0}).format(data.serviceAmount)}/day
                     </p>
                     <p className="card-text d-flex align-items-center gap-2">
                         <span className="material-symbols-outlined">info</span>
