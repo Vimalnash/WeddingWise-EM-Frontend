@@ -23,6 +23,9 @@ import { VendorPackage } from './Pages/VendorPackage';
 import { VendorPayTerms } from './Pages/VendorPayTerms';
 import { VendorPayTermsAddUpdate } from './Pages/VendorPayTermsAddUpdate';
 import { UserPreferenceAddUpdate } from './Pages/UserPreferenceAddUpdate';
+import { ResetPasswordMailingPage } from './Pages/ResetPasswordMailingPage';
+import { ResetPassVerifyLinkPage } from './Pages/ResetPassVerifyLinkPage';
+import { NewPasswordPage } from './Pages/NewPasswordPage';
 
 function App() {
 
@@ -43,7 +46,10 @@ function App() {
 
         <Route path="/user/signup" element={<UserSignupPage />} />
         <Route path="/user/login" element={isUser() ? <Navigate to="/" /> : <UserLoginPage />} />
-        
+        <Route path="/user/resetpassword" element={isUser() ? <Navigate to="/" /> : <ResetPasswordMailingPage /> } />
+        <Route path="/user/resetpasswordlink" element={isUser() ? <Navigate to="/" /> : <ResetPassVerifyLinkPage /> } />
+        <Route path="/user/resetpassword/setnewpassword" element={isUser() ? <Navigate to="/" /> : <NewPasswordPage /> } />
+      
         <Route path="/user/myfavouritevendors" element={isUser() ? <UserMyFavouriteVendors /> : <Navigate to="/" /> } />
         
         <Route path="/user/add/eventplanning" element={isUser() ? <UserEventPlanMain /> : <Navigate to="/" /> } />
