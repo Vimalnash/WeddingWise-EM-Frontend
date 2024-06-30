@@ -26,6 +26,45 @@ async function handleUserLogin(loginPayload) {
     return data;
 };
 
+// Forgot Password - Mailing Reset Password Link API
+export async function handleUserPasswordReset(resetLoginPass) {
+    const res = await fetch(`${baseurl}/${userurl}/resetpassword`, {
+        method: "PUT",
+        body: JSON.stringify(resetLoginPass),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json();
+    return data;
+};
+
+// User Click Link from mail ->
+//  verifying user by hash and then show new password input page
+export async function handleResetPassVerifyLink(searchquery) {
+    const res = await fetch(`${baseurl}/${userurl}/resetpasswordlink?searchquery=${searchquery}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json();
+    return data;
+};
+
+// New Password setting regarding API handle
+export async function handleUsersNewPass(newPassData, searchquery) {
+    const res = await fetch(`${baseurl}/${userurl}/resetpassword/setnewpassword?searchquery=${searchquery}`, {
+        method: "PUT",
+        body: JSON.stringify(newPassData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await res.json();
+    return data;
+};
+
 // Handling User to Logout
 function handleUserLogout() {
     localStorage.removeItem("token")

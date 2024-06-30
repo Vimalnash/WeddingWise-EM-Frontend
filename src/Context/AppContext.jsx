@@ -17,6 +17,7 @@ export function AppContext({children}) {
     const [filterFromAmt, setFilterFromAmt] = useState(0);
     const [filterToAmt, setFilterToAmt] = useState(0);
 
+    const [resetLink, setResetLink] = useState("")
     const [userEventPlanMainList, setUserEventPlanMainList] = useState([]);
     const [userEventPlanRegList, setUserEventPlanRegList] = useState([]);
     const [userEventPaymentList, setUserEventPaymentList] = useState([]);
@@ -154,7 +155,7 @@ export function AppContext({children}) {
         vendorId:"",
         amount: "",
         description: "",
-        registered: false,
+        registered: "",
     });
 
     const [userPaymentData, setUserPaymentData] = useState({
@@ -460,6 +461,7 @@ export function AppContext({children}) {
             states, 
             cities,
             vendors,
+            resetLink, setResetLink,
             userFavourites, setUserFavourites,
             userEventPlanMainData, setUserEventPlanMainData,
             userEventPlanVendorRegData, setUserEventPlanVendorRegData,

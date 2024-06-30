@@ -44,6 +44,7 @@ function MainEventsCard({val, idx}) {
     const [vendorAllotedAmt, setVendorAllotedAmt] = useState();
     const [totalPaidAmt, setTotalPaidAmt] = useState();
     const [planRegCount, setPlanRegCount] = useState();
+    const [planRefereceCount, setplanRefereceCount] = useState();
 
     // Event Summary Regarding Calculation Loop
     const array = userEventPlanRegList
@@ -62,7 +63,22 @@ function MainEventsCard({val, idx}) {
             },
             { totalVendorAllotedAmount: 0,  totalRegisteredAmount: 0, eventPlanRegCount: 0}
         )
+
+    // Event UserReference Regarding Calculation Loop
+    const ReferenceCount = userPreferenceList
+        .filter((data) => data.eventPlanMainId._id == val._id)
+        .map((val, idx) => {
+            return val
+        })
+        .reduce(
+            (acc, val, index) => {
+                acc.eventPlanReferenceCount = acc.eventPlanReferenceCount + 1
+                return acc;
+            },
+            { eventPlanReferenceCount: 0}
+        )
     
+        
     // Event Payment Paid regarding calculation loop
     const paidTotalAmount = userEventPaymentList
             .filter((data) => data.eventPlanMainId._id == val._id)
@@ -83,8 +99,8 @@ function MainEventsCard({val, idx}) {
         setVendorAllotedAmt(array.totalVendorAllotedAmount);
         setVendorRegAmt(array.totalRegisteredAmount);
         setTotalPaidAmt(paidTotalAmount.totalAmountPaid);
+        setplanRefereceCount(ReferenceCount.eventPlanReferenceCount);
     }, []);
-
 
     // Populate the Main Event Plan Data to the editing form(UserEventPlanMain)
     function editdatapopulate(val) {
@@ -116,7 +132,7 @@ function MainEventsCard({val, idx}) {
     function deleteMainPlan(e, id) {
         e.preventDefault();
         const parent = e.target.parentNode.parentNode;
-        console.log("delete", id, parent);
+        // console.log("delete", id, parent);
 
         const confirmDelete = confirm("Confirm Delete?")
         confirmDelete ?
@@ -190,7 +206,7 @@ function MainEventsCard({val, idx}) {
             <div className="card-bottom">
                 <button onClick={(e) => editMainPlan(e, val, val._id, idx)} className="btn btn-edit">Edit</button>
                 {
-                    planRegCount>0 ?
+                    (planRegCount>0) || (planRefereceCount > 0) ?
                     (
                         <button disabled onClick={(e) => deleteMainPlan(e, val._id)} className="btn btn-del">Delete</button>
                     )

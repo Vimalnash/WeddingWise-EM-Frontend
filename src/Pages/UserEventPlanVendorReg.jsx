@@ -36,10 +36,11 @@ export function UserEventPlanVendorReg() {
         onSubmit: (values, {resetForm}) => {
             if (show) {
                 handleAddEventPlanVendorRegister(values);
-            } else {
+            } 
+            else {
                 handleUpdateEventPlanVendorRegister(values);
             }
-            resetForm({values: ""});
+            // resetForm({values: ""});
         }
     });
 
@@ -75,9 +76,22 @@ export function UserEventPlanVendorReg() {
 
     // Adding New EventService Plan and Register with Vendor
     function handleAddEventPlanVendorRegister(eventPlanVendorPayload) {
+        let registerdata
+        if(values.registered == "") {
+            registerdata = {
+                ...eventPlanVendorPayload,
+                registered: false,
+            }
+        } else {
+            registerdata = {
+                ...eventPlanVendorPayload,
+            }
+        }
+        console.log("Actual",eventPlanVendorPayload)
+        console.log("Modified",registerdata)
         fetch(`${baseurl}/${userurl}/add/eventplanningvendor/`, {
             method: "POST",
-            body: JSON.stringify(eventPlanVendorPayload),
+            body: JSON.stringify(registerdata),
             headers: {
                 "Content-Type": "application/json",
                 "x-auth-token": getToken()

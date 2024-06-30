@@ -49,6 +49,11 @@ export function UserLoginPage() {
         })
     };
 
+    // Forgot Password Button Hanlde
+    function forgotPassword(){
+        navigate("/user/resetpassword");        
+    };
+
     return (
         <>
             <NavBar />
@@ -95,6 +100,7 @@ export function UserLoginPage() {
                     }
                 </div>
                 <button type="submit" className="btn btn-primary mb-3">Login</button>
+                <button type="submit" className="btn btn-primary mb-3" onClick={forgotPassword}>Forgot Password?</button>
             </form>
             </div>
             <div className="text-center">
